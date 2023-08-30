@@ -10,10 +10,13 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    double f, a = -1, b = -4, c = 6.3;
+    double x, y;
+    cout << "Введіть число x: ";
+    cin >> x;
 
-    f = ((sqrt(a / b - a) / (pow(b, 2) + a * b)) - fabs(b + 2));
-    cout << "Результат f=" << f;
+    y = ((2 * pow(x, 2) - pow(sin(x), 2)) / (cos(2 * x) + pow(x, 2)))
+        - ((x + 1) / (log(x)));
+    cout << "Результат y=" << y;
 
     return 0;
 }
