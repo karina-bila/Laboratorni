@@ -7,12 +7,15 @@ using namespace std;
 
 int main()
 {
-	int s, i;
+	int s = 0, i;
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
-	s = 0;
-	for (i = 5; i < 50; pow(i++, 3))
-		s += i;
+
+	for (i = 5; i <= 50; i++)
+	{
+		s += pow(i, 3);
+	}
 	cout << "s=" << s << endl;
+
 	return 0;
 }
