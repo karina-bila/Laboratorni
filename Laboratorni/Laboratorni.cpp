@@ -1,20 +1,105 @@
-﻿// Laboratorni.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
+﻿#include <cmath>
 #include <iostream>
+#include <random>
+#include <string>
+#include <vector>
+#include <windows.h>
 
-int main()
-{
-    std::cout << "Hello World!\n";
+using namespace std;
+
+//генерація рандомного одновимірного масиву
+vector<int> generateRandomArray(int size) {
+	random_device rd;
+	mt19937 gen(rd());
+	uniform_int_distribution<> dis(1, 100);
+
+	vector<int> randomArray(size);
+	for (int i = 0; i < size; ++i) {
+		randomArray[i] = dis(gen);
+	}
+
+	return randomArray;
 }
 
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
+//пошук найбільшого та найменшого числа
+void findMinMaxDifference(int arr[], int size) {
+	if (size <= 0) {
+		cout << "Масив порожній." << endl;
+		return;
+	}
 
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
+	int minElement = arr[0];
+	int maxElement = arr[0];
+
+	for (int i = 1; i < size; ++i) {
+		if (arr[i] < minElement) {
+			minElement = arr[i];
+		}
+		if (arr[i] > maxElement) {
+			maxElement = arr[i];
+		}
+	}
+
+	int difference = maxElement - minElement;
+
+	cout << "Найбільший елемент: " << maxElement << endl;
+	cout << "Найменший елемент: " << minElement << endl;
+	cout << "Різниця між найбільшим і найменшим елементами: " << difference
+		<< endl;
+}
+
+// Екстремальне сортування масиву
+void extremeSort(int arr[], int size) {
+	for (int i = 0; i < size / 2; ++i) {
+		int minIndex = i;
+		int maxIndex = i;
+		for (int j = i; j < size - i; ++j) {
+			if (arr[j] < arr[minIndex]) {
+				minIndex = j;
+			}
+			if (arr[j] > arr[maxIndex]) {
+				maxIndex = j;
+			}
+		}
+
+		swap(arr[i], arr[minIndex]);
+
+		// Обміняти мінімальний елемент з першим у невідсортованій частині
+		if (maxIndex == i) {
+			maxIndex = minIndex;
+		}
+
+		// Змінити максимальний індекс, якщо максимальний елемент знаходиться спочатку
+		swap(arr[size - 1 - i], arr[maxIndex]);
+	}
+}
+
+
+int main() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	int size;
+	cout << "Введіть розмір масиву: ";
+	cin >> size;
+
+	vector<int> generatedArray = generateRandomArray(size);
+
+	cout << "Згенерований масив: ";
+	for (int i = 0; i < size; ++i) {
+		cout << generatedArray[i] << " ";
+	}
+	cout << endl;
+
+	findMinMaxDifference(&generatedArray[0], size);
+
+	extremeSort(&generatedArray[0], size);
+
+	cout << "Відсортований масив: ";
+	for (int i = 0; i < size; ++i) {
+		cout << generatedArray[i] << " ";
+	}
+	cout << endl;
+
+	return 0;
+}
