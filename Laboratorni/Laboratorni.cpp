@@ -1,20 +1,53 @@
-﻿// Laboratorni.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+﻿#include <iostream>
+#include <string>
+#include <windows.h>
 
-#include <iostream>
+//Знайти суму елементів двох матриць розміром 3×3.
+
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	const int rows = 3;
+	const int cols = 3;
+
+	int matrix1[rows][cols];
+	int matrix2[rows][cols];
+	int result[rows][cols];
+
+
+	//Вводимо 1-шу матрицю
+	cout << "Введіть елементи 1-ої матриці " << rows << "x" << cols << ":\n";
+	for (int i = 0; i < rows; ++i) {
+		for (int j = 0; j < cols; ++j) {
+			cin >> matrix1[i][j];
+		}
+	}
+
+	//Вводимо 2-гу матрицю
+	cout << "Введіть елементи 2-ої матриці " << rows << "x" << cols << ":\n";
+	for (int i = 0; i < rows; ++i) {
+		for (int j = 0; j < cols; ++j) {
+			cin >> matrix2[i][j];
+		}
+	}
+
+	//Сума матриць
+	for (int i = 0; i < rows; ++i) {
+		for (int j = 0; j < cols; ++j) {
+			result[i][j] = matrix1[i][j] + matrix2[i][j];
+		}
+	}
+
+	cout << "Результат суми матриць:\n";
+	for (int i = 0; i < rows; ++i) {
+		for (int j = 0; j < cols; ++j) {
+			cout << result[i][j] << " ";
+		}
+		cout << endl;
+	}
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
