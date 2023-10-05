@@ -1,73 +1,103 @@
 ﻿#include <iostream>
-#include <algorithm>
-#include <windows.h>
-
-//Створити функції для введення, та функцію обчислення елементів масиву, функцію сортування.Ввести та опрацювати два масиви цілих чисел.
-//Суму квадратів від’ємних чисел.
+#include <Windows.h>
+#include <string>
 
 using namespace std;
+
+
+void printArray(int* arr, int size, string name = "Array")
+{
+	cout << "Масив " << name << ", розміром " << size << endl;
+
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+}
+
+int* getArray(int n, string name = "Array")
+{
+	cout << "Ведіть масив " << name << ", розміром " << n << endl;
+
+	int* arr = new int[n];
+	for (int i = 0; i < n; i++)
+	{
+		cout << "arr[" << i << "] = ";
+		cin >> arr[i];
+	}
+
+	system("cls");
+
+	printArray(arr, n, name);
+
+	return arr;
+}
+
+void printSummOfNegativeInSquare(int* arr, int size, string name = "Array")
+{
+	double summ = 0;
+	for (int i = 0; i < size; i++)
+	{
+		if (arr[i] < 0)
+		{
+			summ += pow(arr[i], 2);
+		}
+	}
+
+	cout << "Сума квадратів від'ємних елементів масиву " << name << " = " << summ << endl;
+}
+
+void sortAndPrintArray(int* arr, int size, string name = "Array")
+{
+	for (int i = 0; i < size; i++)
+	{
+		int min = arr[i];
+		int min_i = i;
+		for (int j = i + 1; j < size; j++)
+		{
+			if (arr[j] < min)
+			{
+				min = arr[j];
+				min_i = j;
+			}
+		}
+		if (i != min_i)
+		{
+			int tmp = arr[i];
+			arr[i] = arr[min_i];
+			arr[min_i] = tmp;
+		}
+	}
+
+	cout << "Відсортований масив " << name << ", розміром " << size << endl;
+
+	for (int i = 0; i < size; i++)
+	{
+		cout << arr[i] << " ";
+	}
+	cout << endl;
+}
 
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
-	const int MAX_SIZE = 100; // Максимальний розмір масиву
+	string name1 = "1", name2 = "2";
+	int n = 5;
 
-	void inputArray(int arr[], int size) {
-		cout << "Введіть елементи масиву:\n";
-		for (int i = 0; i < size; ++i); {
-			cin >> arr; "i";
-		}
-	}
+	//вводимо два масиви
+	int* arr1 = getArray(n, name1);
+	int* arr2 = getArray(n, name2);
 
-	int sumOfNegativeSquares(int arr[], int size) {
-		int sum = 0;
-		for (int i = 0; i < "size"; ++i); {
-			if (arr; "i" < 0) {
-				sum += arr[i] * arr[i]; // Додаємо квадрат від'ємного числа до суми
-			}
-		}
-		return sum;
-	}
+	//Сума квадратів від'ємних елементів
+	printSummOfNegativeInSquare(arr1, n, name1);
+	printSummOfNegativeInSquare(arr2, n, name2);
 
-	void sortArray(int arr[], int size) {
-		sort(arr, arr + size); // Сортуємо масив за зростанням
-	}
+	//Сортуємо і виводимо масиви
+	sortAndPrintArray(arr1, n, name1);
+	sortAndPrintArray(arr2, n, name2);
 
-	int main() {
-		int arr1; "MAX_SIZE";
-		int arr2; "MAX_SIZE";
-		int size;
-
-		cout << "Введіть розмір масивів: ";
-		cin >> size;
-
-		cout << "Опрацьовуємо перший масив:\n";
-		inputArray(arr1, size);
-		int sum1 = sumOfNegativeSquares(arr1, size);
-		sortArray(arr1, size);
-
-		cout << "Опрацьовуємо другий масив:\n";
-		inputArray(arr2, size);
-		int sum2 = sumOfNegativeSquares(arr2, size);
-		sortArray(arr2, size);
-
-		cout << "Сума квадратів від'ємних чисел у першому масиві: " << sum1 << endl;
-		cout << "Сума квадратів від'ємних чисел у другому масиві: " << sum2 << endl;
-
-		cout << "Відсортований перший масив:\n";
-		for (int i = 0; i < size; ++i) {
-			cout << arr1[i] << " ";
-		}
-		cout << endl;
-
-		cout << "Відсортований другий масив:\n";
-		for (int i = 0; i < size; ++i) {
-			cout << arr2[i] << " ";
-		}
-		cout << endl;
-
-		return 0;
-	}
+	return 0;
 }
