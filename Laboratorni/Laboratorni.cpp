@@ -2,8 +2,10 @@
 #include <Windows.h>
 #include <string>
 
-using namespace std;
+//Створити функції для введення, та функцію обчислення елементів масиву, функцію сортування.Ввести та опрацювати два масиви цілих чисел.
+// Суму квадратів від’ємних чисел.
 
+using namespace std;
 
 void printArray(int* arr, int size, string name = "Array")
 {
