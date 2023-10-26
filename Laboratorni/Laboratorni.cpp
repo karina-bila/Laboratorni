@@ -88,7 +88,7 @@ vector<Student> getStudents(int count) {
 }
 
 vector<Student> printSuccessfulStudents(vector<Student>& students, int successGrade) {
-	vector<Student> successfulStudents; // Create a vector to store successful students
+	vector<Student> successfulStudents;
 
 	for (const auto& student : students) {
 		int general_mark = (student.math_mark + student.physics_mark + student.informatics_mark + student.history_mark) / 4;
@@ -104,7 +104,7 @@ vector<Student> printSuccessfulStudents(vector<Student>& students, int successGr
 			cout << "Оцінка з історії: " << student.history_mark << endl;
 			cout << endl;
 
-			successfulStudents.push_back(student); // Add the successful student to the vector
+			successfulStudents.push_back(student);
 		}
 	}
 
@@ -161,5 +161,5 @@ int main()
 		outputFile2 << endl;
 	}
 
-	outputFile2.close(); // Close the output file
+	outputFile2.close();
 }
