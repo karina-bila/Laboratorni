@@ -4,10 +4,7 @@
 #include <fstream>
 #include <cctype>
 #include <sstream>
-#include <fstream>
 #include <vector>
-#include <sstream>
-
 
 //Створити за допомогою програми Блокнот текстовий файл та заповнити його числовими даними у вигляді матриці.
 //Модифікувати свою програму опрацювання двовимірного масиву(лабораторна робота No8).
@@ -91,6 +88,4 @@ int main()
 		}
 		cout << endl;
 	}
-
-
 }
